@@ -3,7 +3,6 @@ package hu.tigra.pti.geb.page
 import geb.Page
 import geb.module.Checkbox
 import geb.module.RadioButtons
-import geb.module.Select
 import hu.tigra.pti.geb.module.Date
 import hu.tigra.pti.geb.module.ErrorMessages
 
@@ -22,20 +21,16 @@ class RegisterPage extends Page {
         dateOfBirth { module(Date) }
         newsletter { $('input[id="newsletter"]').module(Checkbox) }
         offers { $('input[id="optin"]').module(Checkbox) }
-        registerButton { $('button[id="submitAccount"]') }
-        errorMessages(required: false) { $('div[class="alert alert-danger"]:first-of-type').module ErrorMessages }
-        addressFirstName { $('input[id="firstname"]') }
-        addressLastName { $('input[id="lastname"]') }
-        addressCompany { $('input[id="company"]') }
-        address1 { $('input[id="address1"]') }
-        address2 { $('input[id="address2"]') }
+        company { $('input[id="company"]') }
+        address { $('input[id="address1"]') }
         city { $('input[id="city"]') }
         state { $('select[id="id_state"]') }
-        postcode { $('input[id="postcode"]') }
-        country { $('select[id="id_country"]') }
+        postalCode { $('input[id="postcode"]') }
+        other { $('textarea[id="other"]') }
         phone { $('input[id="phone"]') }
-        phone_mobile { $('input[id="phone_mobile"]') }
+        mobilePhone { $('input[id="phone_mobile"]') }
         alias { $('input[id="alias"]') }
-
+        registerButton { $('button[id="submitAccount"]') }
+        errorMessages(required: false) { $('div[class="alert alert-danger"]:first-of-type').module ErrorMessages }
     }
 }

@@ -1,6 +1,7 @@
 package hu.tigra.pti.geb
 
 import hu.tigra.pti.geb.page.LoginPage
+import hu.tigra.pti.geb.page.MyAccountPage
 import hu.tigra.pti.geb.page.RegisterPage
 
 class RegisterSpec extends BaseSpec {
@@ -10,7 +11,7 @@ class RegisterSpec extends BaseSpec {
         def loginPage = to LoginPage
 
         when: 'Kitöltöm a "CREATE AN ACCOUNT" blokkban az "Email address" mezőt egy még nem regisztrált email címmel és a "Create an account" funkciógombra kattintok.'
-        loginPage.registerEmailAddress = 'sss@email.hu'
+        loginPage.registerEmailAddress = 'teszt@email.hu'
         loginPage.registerButton.click()
 
         then: 'Megjelenik a "Create an account" űrlap.'
@@ -29,26 +30,21 @@ class RegisterSpec extends BaseSpec {
         then: '5 hibaüzenet jelenik meg'
         registerPage.errorMessages.values.size() == 5
 
-        when: 'Kitöltöm a „Your address” blokkban az összes mezőt és „Register” funkciógombra kattintok.'
+        when: 'Kitöltöm a "Your address" blokkban az összes mezőt és "Register" funkciógombra kattintok.'
         registerPage.password = 'teszt123'
-        registerPage.addressFirstName = 'Elek'
-        registerPage.addressLastName = 'Mekk'
-        registerPage.addressCompany = 'gyuszi és fia bt.'
-        registerPage.address1 = '4821 Debrecen kis utca 32'
-        //registerPage.address2 = '4'
-        registerPage.city = 'Debrecen'
-        registerPage.state = 'Alaska'
-        registerPage.postcode = '00000'
-        registerPage.country = 'United States'
-        registerPage.phone = '06401234567'
-        registerPage.phone_mobile = '06401234567'
-        registerPage.alias="gyuri"
+        registerPage.company = 'Az én cégem kft'
+        registerPage.address = 'zöld utca 42.'
+        registerPage.city = 'Pirosváros'
+        registerPage.state = 'Florida'
+        registerPage.postalCode = '12345'
+        registerPage.other = 'Valami nagyon fontos információ...'
+        registerPage.phone = '06123456789'
+        registerPage.mobilePhone = '06987654321'
+        registerPage.alias = 'Az én kicsi címem'
         registerPage.registerButton.click()
 
-
-        then: 'Megjelenik a felhasználó adatai felület: “My account”.'
-        def myAccountPage = waitFor { at hu.tigra.pti.geb.page.MyAccountPage }
+        then: 'Megjelenik a felhasználó adatai felület: "My account".'
+        def myAccountPage = waitFor { at MyAccountPage }
         myAccountPage.header.text() == "MY ACCOUNT"
-
     }
 }
